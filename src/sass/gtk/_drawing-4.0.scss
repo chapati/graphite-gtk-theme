@@ -288,7 +288,7 @@
 // possible $p values:
 // top, bottom, right, left
 //
-  
+
   $_border_pos: '';
   $_direction: '';
   $_border_radius: '';
@@ -315,7 +315,7 @@
   }
 
   #{$_selector} undershoot.#{$p} {
-    background: linear-gradient(to $_direction, gtkalpha($c, .75), transparent 8px);
+    background: none; //linear-gradient(to $_direction, gtkalpha($c, .75), transparent 8px);
 
     @if $style == 'round' {
       border-radius: $_border_radius;
@@ -324,7 +324,7 @@
     @if $style == 'compact' {
       box-shadow: none;
     } @else {
-      box-shadow: inset $_border_pos $side-border;
+      box-shadow: none; // inset $_border_pos $side-border;
     }
   }
 }
