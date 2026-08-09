@@ -1760,12 +1760,10 @@ headerbar {
   }
 
   .title {
-    padding: 0 $space-size * 2;
     font-weight: bold;
   }
 
   .subtitle {
-    padding: 0 $space-size * 2;
     font-size: smaller;
   }
 
@@ -1965,6 +1963,19 @@ pathbar > button {
   padding-right: ($medium-size - 24px) / 2;
   border-radius: $corner-radius;
 
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: $corner-radius - 2px;
+  border: none;
+  box-shadow: none;
+
+  &:last-child {
+    @include button(flat-checked);
+  }
+
   label:not(:only-child) {
     &:first-child {
       margin-left: 0;
@@ -1989,33 +2000,21 @@ pathbar > button {
   headerbar & {
     background-color: on($titlebar, fill);
   }
+
+  .nautilus-path-button {
+    padding-top: $space-size / 1.5;
+    padding-bottom: $space-size / 1.5;
+  }
 }
 
 .pathbar {
   background-color: $fill;
   color: $text-secondary;
-  border: none;
   border-radius: $corner-radius;
-  padding: 2px;
 
   headerbar & {
-    margin-top: $space-size;
-    margin-bottom: $space-size;
     background-color: on($titlebar, fill);
     color: $titlebar-text-secondary;
-  }
-
-  > button {
-    margin-top: 0;
-    margin-bottom: 0;
-    min-height: 20px;
-    border-radius: $corner-radius - 2px;
-    border: none;
-    box-shadow: none;
-
-    &:last-child {
-      @include button(flat-checked);
-    }
   }
 }
 

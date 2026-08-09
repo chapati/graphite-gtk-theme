@@ -1,3 +1,4 @@
+* ugly border in search in nautilus, ugly padding on hove
 * try drop-shadow around all window not only bottom & right, might be it would look better
 * fix gtk errors (run nautilus from cli to see)
 * fix ptyxis coloring (make header transparent)
