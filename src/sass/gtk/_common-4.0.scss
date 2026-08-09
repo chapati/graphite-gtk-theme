@@ -558,9 +558,6 @@ editablelabel > stack > text {
 }
 
 button {
-  min-height: 24px;
-  min-width: 16px;
-  padding: ($medium-size - 24px) / 2 ($medium-size - 16px) / 2;
   border-radius: $corner-radius;
   font-weight: 500;
   @extend %button-basic;
@@ -599,22 +596,7 @@ button {
     }
   }
 
-  &.text-button {
-    min-width: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
-
-    &.flat {
-      min-width: 48px;
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-  }
-
   &.image-button {
-    min-width: 24px;
-    padding: ($medium-size - 24px) / 2;
-
     border-radius: $circular-radius;
   }
 
@@ -625,33 +607,7 @@ button {
   // NOTE: Some image-only buttons use this as well
   &.text-image-button,
   &.text-button.image-button {
-    min-width: 24px;
-    padding: ($medium-size - 24px) / 2;
     border-radius: $corner-radius;
-
-    label {
-      &:first-child {
-        margin-left: 16px - ($medium-size - 24px) / 2;
-      }
-
-      &:last-child {
-        margin-right: 16px - ($medium-size - 24px) / 2;
-      }
-    }
-
-    &.flat label {
-      &:first-child {
-        margin-left: 12px - ($medium-size - 24px) / 2;
-      }
-
-      &:last-child {
-        margin-right: 12px - ($medium-size - 24px) / 2;
-      }
-    }
-
-    image:not(:only-child) {
-      margin: 0 (24px - 16px) / 2;
-    }
   }
 
   .linked:not(.vertical) > &,
@@ -856,7 +812,6 @@ button {
     border-radius: $circular-radius;
     min-width: $small-size;
     min-height: $small-size;
-    padding: $space-size;
 
     label {
       padding: 0;
@@ -972,8 +927,6 @@ splitbutton {
   }
 
   > separator {
-    margin-top: $space-size;
-    margin-bottom: $space-size;
     background: none;
   }
 
@@ -1724,7 +1677,6 @@ searchbar > revealer > box {
 }
 
 headerbar {
-  min-height: $large-size;
   padding: 0;
   margin: 0;
   border: none;
@@ -1815,16 +1767,6 @@ headerbar {
 
     &:backdrop {
       color: $titlebar-text-disabled;
-    }
-  }
-
-  > windowhandle > box {
-    padding: $space-size;
-
-    &,
-    > box.start,
-    > box.end {
-      border-spacing: $space-size;
     }
   }
 
@@ -1957,17 +1899,6 @@ headerbar {
 
     > windowhandle > box {
       padding: 0;
-    }
-
-    windowcontrols {
-
-      button,
-      menubutton {
-        min-height: $small-size;
-        min-width: $small-size;
-        margin: 0;
-        padding: 0;
-      }
     }
   }
 
@@ -2519,10 +2450,6 @@ popover.background {
 
 %tabs_tab {
   transition: $transition, background-size 0ms, background-image 0ms;
-  min-height: $small-size;
-  min-width: $small-size;
-  padding: $space-size / 2 $space-size;
-  margin: 0;
   border: none;
   outline: none;
   background-clip: padding-box;
@@ -2767,7 +2694,6 @@ tabbar {
     border: none;
     background-color: $fill;
     padding: 0;
-    margin: $space-size / 2;
     border-radius: $modal-radius + $space-size / 2;
     box-shadow: none;
 
@@ -2783,7 +2709,6 @@ tabbar {
   }
 
   tabbox {
-    padding: $space-size / 2 0;
     margin: 0 -2px;
 
     > tabboxchild {
@@ -2823,21 +2748,6 @@ tabbar {
   .pinned > tabbox {
     margin-right: $space-size / 2;
   }
-
-  .start-action,
-  .end-action {
-    padding: $space-size;
-  }
-
-  .start-action:dir(ltr),
-  .end-action:dir(rtl) {
-    padding-right: 0;
-  }
-
-  .start-action:dir(rtl),
-  .end-action:dir(ltr) {
-    padding-left: 0;
-  }
 }
 
 dnd tab {
@@ -2854,8 +2764,6 @@ dnd tab {
 tabbar,
 dnd {
   tab {
-    padding: $space-size;
-
     button.image-button {
       padding: 0;
       margin: 0;
@@ -5962,29 +5870,6 @@ toolbarview {
       background-color: transparent;
     }
 
-    .collapse-spacing {
-      padding-top: 0;
-      padding-bottom: 0;
-
-      headerbar {
-        min-height: $medium-size;
-
-        > windowhandle > box {
-          padding-top: $space-size;
-          padding-bottom: $space-size;
-        }
-
-        &.default-decoration {
-          min-height: $medium-size;
-
-          > windowhandle > box {
-            padding-top: 0;
-            padding-bottom: 0;
-          }
-        }
-      }
-    }
-
     &:backdrop > windowhandle {
       filter: none;
       transition: none;
@@ -6397,99 +6282,78 @@ window {
 }
 
 // Windows button
-windowcontrols {
-  border-spacing: $space-size;
-  padding: $space-size;
-  margin: 0;
-
-  &:not(.empty) {
-
-    &.start:dir(ltr),
-    &.end:dir(rtl) {
-      padding-left: $space-size / 2;
+windowcontrols > button:not(.suggested-action):not(.destructive-action) {
+  @if $color_type == 'nord' and $macos == 'true' {
+    image {
+      background: none;
     }
 
-    &.start:dir(rtl),
-    &.end:dir(ltr) {
-      padding-right: $space-size / 2;
+    &.close {
+      &:hover {
+        image {
+          background-color: #bf616a; /* macOS Red */
+        }
+        color: #2e3440;
+      }
+
+      &:active {
+        image {
+          background-color: darken(#bf616a, 10%);
+        }
+        color: #2e3440;
+      }
+    }
+
+    &.minimize {
+      &:hover {
+        image {
+          background-color: #ebcb8b; /* macOS Yellow */
+        }
+        color: #2e3440;
+      }
+
+      &:active {
+        image {
+          background-color: darken(#a3be8c, 10%)
+        }
+        color: #2e3440;
+      }
+    }
+
+    &.maximize {
+      &:hover {
+        image {
+          background-color: #a3be8c; /* macOS Green */
+        }
+        color: #2e3440;
+      }
+
+      &:active {
+        image {
+          background-color: darken(#a3be8c, 10%);
+        }
+        color: #2e3440;
+      }
     }
   }
-
-  > button:not(.suggested-action):not(.destructive-action) {
-    @extend %circular-button;
-    @extend %circular-button;
-    min-height: 24px;
-    min-width: 24px;
-    padding: 0;
-
-    min-width: $small-size;   /* Keep standard small button width (24px) */
-    min-height: $small-size;  /* Keep standard small button height (24px) */
-
-    /* Absorbs leftover headerbar height to prevent vertical stretching */
-    margin: ($large-size - $space-size * 2 - $small-size) / 2 $space-size / 2;
-    padding: 0;
-    border-radius: 50%;
-
-    @if $color_type == 'nord' and $macos == 'true' {
-      image {
-        background: none;
-      }
-
-      /* 1. Close Button: Standard idle, Red on hover/active */
-      &.close {
-        &:hover {
-          background-color: #bf616a; /* macOS Red */
-          color: #2e3440;
-        }
-
-        &:active {
-          background-color: darken(#bf616a, 10%);; /* Darker Red on press */
-          color: #2e3440;
-        }
-      }
-
-      &.minimize {
-        &:hover {
-          background-color: #ebcb8b; /* macOS Yellow */
-          color: #2e3440;
-        }
-
-        &:active {
-          background-color: darken(#a3be8c, 10%); /* Darker Yellow on press */
-          color: #2e3440;
-        }
-      }
-
-      /* 3. Maximize Button: Standard idle, Green on hover/active */
-      &.maximize {
-        &:hover {
-          background-color: #a3be8c; /* macOS Green */
-          color: #2e3440;
-        }
-
-        &:active {
-          background-color: darken(#a3be8c, 10%);
-          color: #2e3440;
-        }
-      }
+  @else {
+    image {
+      background: none;
     }
-    @else {
-      image {
-        background: none;
+
+    &.close {
+      &:hover {
+        image {
+          background-color: $titlebar-primary;
+        }
+        color: $titlebar;
       }
 
-      &.close {
-
-        // Window Close button
-        &:hover {
-          background-color: $titlebar-primary;
-          color: $titlebar;
-        }
-
-        &:active {
+      &:active {
+        image {
           background-color: darken($titlebar-primary, 10%);
-          color: $titlebar;
         }
+        color: $titlebar;
       }
     }
   }
