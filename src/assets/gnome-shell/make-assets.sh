@@ -81,7 +81,7 @@ for theme in '' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-teal' '-
           ;;
         -blue)
           theme_color_dark='#5e81ac'
-          theme_color_light='#89a3c2'
+          theme_color_light='#81a1c1'
           ;;
       esac
     fi
@@ -97,7 +97,7 @@ for theme in '' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-teal' '-
       cp -rf "theme" "theme${theme}"
       sed -i "s/#333333/${theme_color_dark}/g" "theme${theme}"/*.svg
       sed -i "s/#e0e0e0/${theme_color_light}/g" "theme${theme}"/*.svg
-      
+
     fi
   done
 done

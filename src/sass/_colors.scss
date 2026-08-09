@@ -23,7 +23,7 @@ $theme_blue_color:    if($variant == 'light', #3684dd, #5294e2);
   $theme_yellow_color:  if($variant == 'light', #e4b558, #eac985);
   $theme_green_color:   if($variant == 'light', #82ac5d, #a0c082);
   $theme_teal_color:    if($variant == 'light', #63a6a5, #83b9b8);
-  $theme_blue_color:    if($variant == 'light', #5e81ac, #89a3c2);
+  $theme_blue_color:    if($variant == 'light', #5e81ac, #81a1c1);
 }
 
 @function gtkalpha($c, $a) {
@@ -38,7 +38,7 @@ $theme_blue_color:    if($variant == 'light', #3684dd, #5294e2);
   // Calculate color brightness according to https://www.w3.org/TR/AERT/#color-contrast
   $brightness: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
 
-  @if ($brightness >= 156) {
+  @if ($brightness >= 150) {
     @if ($state == 'primary') { @return rgba(black, 0.87); }
     @if ($state == 'secondary') { @return rgba(black, 0.6); }
     @if ($state == 'disabled') { @return rgba(black, 0.38); }
