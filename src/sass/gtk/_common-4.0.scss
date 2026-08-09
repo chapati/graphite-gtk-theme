@@ -1729,15 +1729,11 @@ headerbar {
   margin: 0;
   border: none;
   transition: all $duration $ease-out;
-  background-color: $titlebar;
-  color: $titlebar-text;
 
   @if $rimless =='true' {
-    box-shadow: none; // original inset 0 1px highlight($titlebar);
+    box-shadow: none;
     border-radius: $window-radius $window-radius 0 0;
-  }
-
-  @else {
+  } @else {
     box-shadow: none;
   }
 
@@ -1746,7 +1742,6 @@ headerbar {
   }
 
   &:backdrop {
-    background-color: $titlebar-backdrop;
     color: $titlebar-text-secondary;
 
     &:disabled {
@@ -1756,14 +1751,13 @@ headerbar {
     > windowhandle {
       // opacity looks weird with GtkSwitch, but filter works fine
       filter: none;
-
       transition: none;
     }
   }
 
   &.flat {
     background-color: transparent;
-    color: $text;
+    color: inherit;
 
     @if $variant =='light' and $topbar =='dark' {
       button:not(.suggested-action):not(.destructive-action) {
@@ -5988,15 +5982,6 @@ toolbarview {
             padding-bottom: 0;
           }
         }
-      }
-    }
-
-    &.raised {
-      background-color: $titlebar;
-      color: $titlebar-text;
-
-      &:backdrop {
-        background-color: $titlebar-backdrop;
       }
     }
 

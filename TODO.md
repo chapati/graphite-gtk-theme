@@ -1,3 +1,6 @@
+* try drop-shadow around all window not only bottom & right, might be it would look better
+* fix gtk errors (run nautilus from cli to see)
+* fix ptyxis coloring (make header transparent)
 * floating topbar style
 * shell colors
 * may be selection style from orchis
