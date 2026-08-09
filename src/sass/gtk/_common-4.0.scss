@@ -2051,6 +2051,12 @@ pathbar > button {
   }
 }
 
+.nautilus-pathbar {
+  headerbar & {
+    background-color: on($titlebar, fill);
+  }
+}
+
 .pathbar {
   background-color: $fill;
   color: $text-secondary;
@@ -6439,21 +6445,66 @@ windowcontrols {
     padding: 0;
     border-radius: 50%;
 
-    image {
-      background: none;
-    }
-
-    &.close {
-
-      // Window Close button
-      &:hover {
-        background-color: $titlebar-primary;
-        color: $titlebar;
+    @if $color_type == 'nord' and $macos == 'true' {
+      image {
+        background: none;
       }
 
-      &:active {
-        background-color: darken($titlebar-primary, 10%);
-        color: $titlebar;
+      /* 1. Close Button: Standard idle, Red on hover/active */
+      &.close {
+        &:hover {
+          background-color: #bf616a; /* macOS Red */
+          color: #2e3440;
+        }
+
+        &:active {
+          background-color: darken(#bf616a, 10%);; /* Darker Red on press */
+          color: #2e3440;
+        }
+      }
+
+      &.minimize {
+        &:hover {
+          background-color: #ebcb8b; /* macOS Yellow */
+          color: #2e3440;
+        }
+
+        &:active {
+          background-color: darken(#a3be8c, 10%); /* Darker Yellow on press */
+          color: #2e3440;
+        }
+      }
+
+      /* 3. Maximize Button: Standard idle, Green on hover/active */
+      &.maximize {
+        &:hover {
+          background-color: #a3be8c; /* macOS Green */
+          color: #2e3440;
+        }
+
+        &:active {
+          background-color: darken(#a3be8c, 10%);
+          color: #2e3440;
+        }
+      }
+    }
+    @else {
+      image {
+        background: none;
+      }
+
+      &.close {
+
+        // Window Close button
+        &:hover {
+          background-color: $titlebar-primary;
+          color: $titlebar;
+        }
+
+        &:active {
+          background-color: darken($titlebar-primary, 10%);
+          color: $titlebar;
+        }
       }
     }
   }
