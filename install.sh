@@ -327,7 +327,7 @@ make_gtkrc() {
     if [[ "$ctype" == '-nord' ]]; then
       if [[ "$darker" == 'true' ]]; then
         background_light='#f9fafb'
-        background_dark='#252a33'
+        background_dark='#242932' # original: 252a33
         background_alt='#313744'
       else
         background_light='#f9fafb'

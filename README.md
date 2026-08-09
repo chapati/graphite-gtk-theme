@@ -1,3 +1,11 @@
+Based on [Vinceliuice Graphite GTK Theme](https://github.com/vinceliuice/Graphite-gtk-theme)
+
+This fork only modifies dark-nord-darker flavour:
+
+```bash
+ ./install.sh -l -c dark --tweaks nord normal rimless darker -t blue && nautilus -q
+```
+
 ![Graphite](preview.png?raw=true)
 
 ## Requirements
