@@ -116,6 +116,7 @@ OPTIONS:
                           5. normal     Normal sidebar style (Nautilus)
                           6. float      Float gnome-shell panel style
                           7. colorful   Colorful gnome-shell panel style
+                          8. macos      Mac style window buttons
 
   --round                 Change theme round corner border-radius [Input the px value you want] (Suggested: 2px < value < 16px)
                           1. 3px
@@ -717,6 +718,11 @@ while [[ $# -gt 0 ]]; do
             echo -e "Install Colorful Gnome-Shell Panel version! ..."
             shift
             ;;
+          macos)
+            macos="true"
+            echo -e "Install Mac style window buttons! ..."
+            shift
+            ;;
           -*)
             break
             ;;
@@ -799,6 +805,10 @@ colorful_panel() {
 
 round_corner() {
   sed -i "/\$default_corner:/s/6px/${corner}/" ${SRC_DIR}/sass/_tweaks-temp.scss
+}
+
+macos() {
+  sed -i "/\$macos:/s/false/true/" ${SRC_DIR}/sass/_tweaks-temp.scss
 }
 
 gnome_shell_version() {
@@ -884,6 +894,10 @@ theme_tweaks() {
 
   if [[ "$round" == "true" ]] ; then
     round_corner
+  fi
+
+  if [[ "$macos" == "true" ]] ; then
+    macos
   fi
 }
 
