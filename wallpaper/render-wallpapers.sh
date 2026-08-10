@@ -15,7 +15,7 @@ elif [[ "${screen}" == '4k' ]]; then
 fi
 
 for color in '-Light' '-Dark'; do
-for theme in '' '-nord'; do
+for theme in '' '-nord' '-ayu'; do
 for system in '' '-arch' '-debian' '-fedora' '-manjaro' '-ubuntu' '-pop-os'; do
 
 FILE_ID="wave${color}${theme}${system}"
@@ -46,7 +46,7 @@ done
 done
 done
 
-for theme in '' '-nord'; do
+for theme in '' '-nord' '-ayu'; do
 
 FILE_ID="wave-color${theme}"
 SRC_FILE="src/wallpaper-wave${theme}.svg"

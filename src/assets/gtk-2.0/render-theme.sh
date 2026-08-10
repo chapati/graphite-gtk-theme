@@ -2,7 +2,7 @@
 
 for theme in '' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-teal' '-blue'; do
 for color in '' '-Dark'; do
-for type in '' '-nord'; do
+for type in '' '-nord' '-ayu'; do
   if [[ "$color" == '' ]]; then
     case "$theme" in
       -purple)
@@ -59,7 +59,7 @@ for type in '' '-nord'; do
     esac
   fi
 
-  if [[ "$type" == '-nord' ]]; then
+  if [[ "$type" == '-nord' ]] || [[ "$type" == '-ayu' ]]; then
     case "$theme" in
       -purple)
         theme_color='#b57daa'
@@ -95,7 +95,7 @@ for type in '' '-nord'; do
     esac
   fi
 
-  if [[ "$type" == '-nord' ]]; then
+  if [[ "$type" == '-nord' ]] || [[ "$type" == '-ayu' ]]; then
     cp -rf "assets${color}.svg" "assets${theme}${color}${type}.svg"
 
     if [[ "$color" == '' ]]; then

@@ -5,7 +5,7 @@ THEME_DIR=$(cd $(dirname $0) && pwd)
 THEME_NAME=Graphite
 
 _COLOR_VARIANTS=('' '-Light' '-Dark')
-_SCHEME_VARIANTS=('' '-nord')
+_SCHEME_VARIANTS=('' '-nord' '-ayu')
 _THEME_VARIANTS=('' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-blue' '-teal')
 _TYPE_VARIANTS=('-rimless' '-outlined')
 
@@ -48,8 +48,10 @@ done
 
 type="-rimless"
 cd .. && ./install.sh -d $THEME_DIR --tweaks float colorful nord rimless -t teal
+cd .. && ./install.sh -d $THEME_DIR --tweaks float colorful ayu rimless -t teal
 cd $THEME_DIR && Tar_themes && Clear_theme
 type="-outlined"
 cd .. && ./install.sh -d $THEME_DIR --tweaks float colorful nord -t teal
+cd .. && ./install.sh -d $THEME_DIR --tweaks float colorful ayu -t teal
 cd $THEME_DIR && Tar_themes && Clear_theme
 

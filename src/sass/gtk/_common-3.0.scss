@@ -694,7 +694,7 @@ button {
 
   .primary-toolbar & { -gtk-icon-shadow: none; } // tango icons don't need shadows
 
-  &.close,
+  &.close
   &.circular {
     @extend %circular-button;
     min-width: 24px;
@@ -1127,7 +1127,7 @@ searchbar > revealer > box {
   }
 
   @if $rimless == 'true' {
-    box-shadow: inset 0 1px highlight($titlebar);
+    box-shadow: none;
   }
 
   &:disabled { color: $titlebar-text-disabled; }
@@ -1632,10 +1632,7 @@ menu,
   background-clip: border-box;
   border-radius: $menu-radius;
 
-  @if $rimless == 'true' {
-    border: 1px solid $solid-border;
-    box-shadow: inset 0 1px highlight($surface);
-  } @else {
+  @if $rimless == 'false' {
     border: 2px solid $primary;
   }
 
@@ -1833,7 +1830,7 @@ popover.background {
 
   &:checked {
     transition: $transition;
-    background-color: if($variant == 'light', rgba($base, 1), rgba(white, 0.15));
+    background-color: if($variant == 'light', rgba($base, 1), rgba(white, 0.09));
     color: $text;
     box-shadow: 0 1px 3px rgba(black, 0.06);
 
@@ -2071,14 +2068,14 @@ scrollbar {
         min-width: 4px;
         min-height: 4px;
         margin: 4px - 1px;
-        border: 1px solid rgba($base, 0.3);
+        border: none;
       }
 
       button {
         min-width: 4px;
         min-height: 4px;
         margin: 4px - 1px;
-        border: 1px solid rgba($base, 0.3);
+        border: none;
         border-radius: $circular-radius;
         background-color: $text-disabled;
         background-clip: padding-box;
@@ -3587,14 +3584,21 @@ colorchooser .popover.osd {
  **********************/
 decoration {
   transition: none;
-  box-shadow: $shadow-z16, 0 0 50px transparent;
+  border-radius: $window-radius;
+  background-clip: border-box;
 
   @if $rimless == 'true' {
-    border-radius: $window-radius;
+    border: none;
+    box-shadow: $shadow-z16,
+        0 1px 2px transparent,
+        0 3px 4px transparent,
+        0 1px 6px transparent;
   } @else {
-    border-radius: $window-radius + 2px;
     border: 2px solid $primary;
-    background-clip: border-box;
+    box-shadow: $shadow-z16, 0 0 0 2px $primary,
+        0 1px 2px transparent,
+        0 3px 4px transparent,
+        0 1px 6px transparent;
   }
 
   // FIXME rationalize shadows
@@ -3686,15 +3690,53 @@ button.titlebutton:not(.suggested-action):not(.destructive-action) {
   padding: 0;
   margin: 0 $space-size / 2;
 
-  &.close { // Window Close button
-    &:hover {
-      background-color: $titlebar-primary;
-      color: $titlebar;
+  @if $macos == 'true' {
+    &.close {
+      &:hover {
+        background-color: #bf616a; /* macOS Red */
+        color: #2e3440;
+      }
+
+      &:active {
+        background-color: darken(#bf616a, 10%);
+        color: #2e3440;
+      }
     }
 
-    &:active {
-      background-color: darken($titlebar-primary, 10%);
-      color: $titlebar;
+    &.minimize {
+      &:hover {
+        background-color: #ebcb8b; /* macOS Yellow */
+        color: #2e3440;
+      }
+
+      &:active {
+        background-color: darken(#ebcb8b, 10%);
+        color: #2e3440;
+      }
+    }
+
+    &.maximize {
+      &:hover {
+        background-color: #a3be8c; /* macOS Green */
+        color: #2e3440;
+      }
+
+      &:active {
+        background-color: darken(#a3be8c, 10%);
+        color: #2e3440;
+      }
+    }
+  } @else {
+    &.close { // Window Close button
+      &:hover {
+        background-color: $titlebar-primary;
+        color: $titlebar;
+      }
+
+      &:active {
+        background-color: darken($titlebar-primary, 10%);
+        color: $titlebar;
+      }
     }
   }
 }

@@ -5,7 +5,7 @@ INKSCAPE="$(command -v inkscape)" || true
 OPTIPNG="$(command -v optipng)" || true
 
 for theme in '' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-teal' '-blue'; do
-  for type in '' '-nord'; do
+  for type in '' '-nord' '-ayu'; do
     case "$theme" in
       '')
         theme_color_dark='#333333'
@@ -45,7 +45,7 @@ for theme in '' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-teal' '-
         ;;
     esac
 
-    if [[ "$type" == '-nord' ]]; then
+    if [[ "$type" == '-nord' ]] || [[ "$type" == '-ayu' ]] then
       case "$theme" in
         '')
           theme_color_dark='#434c5e'
@@ -103,7 +103,7 @@ for theme in '' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-teal' '-
 done
 
 for color in '-Light' '-Dark'; do
-  for type in '' '-nord'; do
+  for type in '' '-nord' '-ayu'; do
     echo "Rendering 'background pictures ...'"
 
     if [[ -n "${RENDER_SVG}" ]]; then

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THEMES=("logos" "assets")
-COLORS=("" "-nord")
+COLORS=("" "-nord" "-ayu")
 RESOLUTIONS=("1080p" "2k" "4k")
 
 for theme in "${THEMES[@]}"; do

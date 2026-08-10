@@ -14,7 +14,7 @@ fi
 
 THEME_NAME='Graphite'
 COLOR_VARIANTS=('-Light' '-Dark')
-THEME_VARIANTS=('' '-nord')
+THEME_VARIANTS=('' '-nord' '-ayu')
 SYSTEM_VARIANTS=('' '-arch' '-debian' '-fedora' '-manjaro' '-ubuntu' '-pop-os')
 
 #COLORS
@@ -51,9 +51,9 @@ cat << EOF
 Usage: $0 [OPTION]...
 
 OPTIONS:
-  -t, --theme VARIANT     Specify theme variant [standard|nord] (Default: all variants)
+  -t, --theme VARIANT     Specify theme variant [standard|nord|ayu] (Default: all variants)
 
-  -c, --color VARIANT     Specify color variant(s) [light|dark] (Default: All variants))
+  -c, --color VARIANT     Specify color variant(s) [light|dark|darkest] (Default: All variants))
 
   -s, --system VARIANT    Specify logo icon on wallpaper [default|arch|debian|fedora|manjaro|ubuntu|popos] (Default: no icon)
 
@@ -112,6 +112,10 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
           nord)
+            themes+=("${THEME_VARIANTS[1]}")
+            shift
+            ;;
+          ayu)
             themes+=("${THEME_VARIANTS[1]}")
             shift
             ;;

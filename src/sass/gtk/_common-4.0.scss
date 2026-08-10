@@ -6205,9 +6205,7 @@ window {
         0 1px 2px transparent,
         0 3px 4px transparent,
         0 1px 6px transparent;
-    }
-
-    @else {
+    } @else {
       box-shadow: $shadow-z16, 0 0 0 2px $primary,
         0 1px 2px transparent,
         0 3px 4px transparent,
@@ -6296,9 +6294,16 @@ window {
 
 // Windows button
 windowcontrols > button:not(.suggested-action):not(.destructive-action) {
-  @if $color_type == 'nord' and $macos == 'true' {
+  @if $macos == 'true' {
     image {
       background: none;
+    }
+
+    &, &:hover, &:active, &:focus {
+      background-color: transparent;
+      background-image: none;
+      box-shadow: none;
+      animation: none;
     }
 
     &.close {
@@ -6309,7 +6314,7 @@ windowcontrols > button:not(.suggested-action):not(.destructive-action) {
         color: #2e3440;
       }
 
-      &:active {
+      &:active, &:focus {
         image {
           background-color: darken(#bf616a, 10%);
         }
@@ -6359,6 +6364,10 @@ windowcontrols > button:not(.suggested-action):not(.destructive-action) {
         image {
           background-color: $titlebar-primary;
         }
+        background-color: transparent;
+        background-image: none;
+        box-shadow: none;
+        animation: none;
         color: $titlebar;
       }
 
@@ -6366,6 +6375,10 @@ windowcontrols > button:not(.suggested-action):not(.destructive-action) {
         image {
           background-color: darken($titlebar-primary, 10%);
         }
+        background-color: transparent;
+        background-image: none;
+        box-shadow: none;
+        animation: none;
         color: $titlebar;
       }
     }

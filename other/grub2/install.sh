@@ -15,7 +15,7 @@ REO_DIR="$(cd $(dirname $0) && pwd)"
 }
 
 name=Graphite
-THEME_VARIANTS=('' 'nord')
+THEME_VARIANTS=('' 'nord', 'ayu')
 SCREEN_VARIANTS=('1080p' '2k' '4k')
 
 #COLORS

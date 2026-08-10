@@ -2,12 +2,17 @@ Based on [Vinceliuice Graphite GTK Theme](https://github.com/vinceliuice/Graphit
 
 This fork
 
-* modifies dark-nord-darker-blue GTK flavour
+* adds ayu color scheme, support only blue flavor (-t blue)
+* adds nord darkest color scheme
 * adds macos tweak (macos window buttons)
 
+The only tested combination at the moment is
+
 ```bash
- ./install.sh -l -c dark --tweaks nord normal rimless darker macos -t blue && nautilus -q
+ ./install.sh -l -c dark --tweaks ayu normal rimless macos -t blue && nautilus -q
 ```
+
+Other options should produce an acceptable result
 
 ![Graphite](preview.png?raw=true)
 
@@ -61,6 +66,7 @@ Run the following commands in the terminal:
                         1. nord:     Nord colorscheme version
                         2. black:    Blackness colorscheme version
                         3. darker:   Darker (default|nord) color version (black option can not be darker)
+                        4. ayu:      Ayu colorscheme version
                         4. rimless:  Remove the 2px outline about windows and menus
                         5. normal:   Normal sidebar style (Nautilus)
                         6. float:    Float gnome-shell panel style

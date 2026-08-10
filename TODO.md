@@ -1,7 +1,10 @@
-* bring gnome shell variables in line with sass/variables
+* consider making active window shadow with a slight bluish glow
+* change colors inside ayu & nord darkest svgs
+* !! jump on new tab in ptyxis
+* bring gnome shell variables in line with sass/variables1
 * ugly border in search in nautilus, ugly padding on hove
 * change nautilus search bar focused border from 2 to 1px
-* implement non-darker nord version based on obsidian theme
+* take a look at obsidian for ayu theme
 * remove unsupported apps like unity and stuff
 * restyle radiobutton (in nautilus sort menu)
 * add smooth transitions and animations

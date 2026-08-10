@@ -5,7 +5,7 @@ THEME_DIR=$(cd $(dirname $0) && pwd)
 THEME_NAME=Graphite
 
 _COLOR_VARIANTS=('' '-Light' '-Dark')
-_SCHEME_VARIANTS=('' '-nord')
+_SCHEME_VARIANTS=('' '-nord' '-ayu')
 _THEME_VARIANTS=('' '-purple' '-pink' '-red' '-orange' '-yellow' '-green' '-blue' '-teal')
 
 if [ ! -z "${COLOR_VARIANTS:-}" ]; then
@@ -50,5 +50,9 @@ cd "$THEME_DIR" && Tar_themes "$scheme" && Clear_theme "$scheme"
 
 scheme='-nord'
 cd .. && ./install.sh -d "$THEME_DIR" -t all --tweaks nord
+cd "$THEME_DIR" && Tar_themes "$scheme" && Clear_theme "$scheme"
+
+scheme='-ayu'
+cd .. && ./install.sh -d "$THEME_DIR" -t all --tweaks ayu
 cd "$THEME_DIR" && Tar_themes "$scheme" && Clear_theme "$scheme"
 

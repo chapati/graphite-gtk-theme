@@ -107,16 +107,17 @@ OPTIONS:
   -u, --uninstall
   -r, --remove            Uninstall/Remove themes or link for libadwaita
 
-  --tweaks                Specify versions for tweaks [nord|black|darker|rimless|normal]
-                          (WORRING: 'nord' and 'darker' can not mix use with 'black'!)
+  --tweaks                Specify versions for tweaks
                           1. nord       Nord colorscheme version
                           2. black      Blackness colorscheme version
-                          3. darker     Darker (default|nord) color version (black option can not be darker)
-                          4. rimless    Remove the 2px outline about windows and menus
-                          5. normal     Normal sidebar style (Nautilus)
-                          6. float      Float gnome-shell panel style
-                          7. colorful   Colorful gnome-shell panel style
-                          8. macos      Mac style window buttons
+                          3. ayu        Ayu colorscheme version (only -t blue is supported)
+                          4. darker     Darker version of nord
+                          5. darkest    Darkest version of nord (only -t blue is supported)
+                          6. rimless    Remove the 2px outline about windows and menus
+                          7. normal     Normal sidebar style (Nautilus)
+                          8. float      Float gnome-shell panel style
+                          9. colorful   Colorful gnome-shell panel style
+                          10. macos      Mac style window buttons
 
   --round                 Change theme round corner border-radius [Input the px value you want] (Suggested: 2px < value < 16px)
                           1. 3px
@@ -273,7 +274,7 @@ color_value() {
         ;;
   esac
 
-  if [[ "$ctype" == '-nord' ]]; then
+  if [[ "$ctype" == '-nord' ]] || [[ "$ctype" == '-ayu' ]]; then
       case "$theme" in
         '')
           theme_color_dark='#dbdee5'
@@ -328,13 +329,21 @@ make_gtkrc() {
     if [[ "$ctype" == '-nord' ]]; then
       if [[ "$darker" == 'true' ]]; then
         background_light='#f9fafb'
-        background_dark='#242932' # original: 252a33
+        background_dark='#252a33'
+        background_alt='#313744'
+      elif [[ "$darkest" == 'true' ]]; then
+        background_light='#f9fafb'
+        background_dark='#242932'
         background_alt='#313744'
       else
         background_light='#f9fafb'
         background_dark='#313744'
         background_alt='#3a4150'
       fi
+    elif [[ "$ctype" == '-ayu' ]]; then
+      background_light='#f9fafb'
+      background_dark='#1f242f'
+      background_alt='#313744'
     else
       if [[ "$darker" == 'true' ]]; then
         background_light='#FFFFFF'
@@ -688,6 +697,12 @@ while [[ $# -gt 0 ]]; do
             echo -e "Install Nord version! ..."
             shift
             ;;
+          ayu)
+            ayu="true"
+            ctype="-ayu"
+            echo -e "Install Ayu version! ..."
+            shift
+            ;;
           black)
             blackness="true"
             echo -e "Install Blackness version! ..."
@@ -696,6 +711,11 @@ while [[ $# -gt 0 ]]; do
           darker)
             darker="true"
             echo -e "Install darker version! ..."
+            shift
+            ;;
+          darkest)
+            darkest="true"
+            echo -e "Install darkest version! ..."
             shift
             ;;
           rimless)
@@ -779,12 +799,20 @@ nord_color() {
   sed -i "/\$color_type:/s/default/nord/" ${SRC_DIR}/sass/_tweaks-temp.scss
 }
 
+ayu_color() {
+  sed -i "/\$color_type:/s/default/ayu/" ${SRC_DIR}/sass/_tweaks-temp.scss
+}
+
 blackness_color() {
   sed -i "/\$color_type:/s/default/blackness/" ${SRC_DIR}/sass/_tweaks-temp.scss
 }
 
 darker_color() {
   sed -i "/\$darker:/s/false/true/" ${SRC_DIR}/sass/_tweaks-temp.scss
+}
+
+darkest_color() {
+  sed -i "/\$darkest:/s/false/true/" ${SRC_DIR}/sass/_tweaks-temp.scss
 }
 
 border_rimless() {
@@ -868,12 +896,20 @@ theme_tweaks() {
     nord_color
   fi
 
+  if [[ "$ayu" = "true" ]] ; then
+    ayu_color
+  fi
+
   if [[ "$blackness" = "true" ]] ; then
     blackness_color
   fi
 
   if [[ "$darker" = "true" ]] ; then
     darker_color
+  fi
+
+  if [[ "$darkest" = "true" ]] ; then
+    darkest_color
   fi
 
   if [[ "$rimless" = "true" ]] ; then
@@ -963,7 +999,7 @@ clean_theme() {
   for theme in "${THEME_VARIANTS[@]}"; do
     for color in '' '-light' '-dark'; do
       for size in "${SIZE_VARIANTS[@]}"; do
-        for type in '' '-nord'; do
+        for type in '' '-nord' '-ayu'; do
           clean "${dest:-$DEST_DIR}" "${name:-$THEME_NAME}" "$theme" "$color" "$size" "$type"
         done
       done
@@ -973,7 +1009,7 @@ clean_theme() {
   for theme in "${THEME_VARIANTS[@]}"; do
     for color in "${COLOR_VARIANTS[@]}"; do
       for size in "${SIZE_VARIANTS[@]}"; do
-        for type in '' '-nord'; do
+        for type in '' '-nord' '-ayu'; do
           uninstall "${dest:-$HOME/.local/share/themes}" "${_name:-$THEME_NAME}" "$theme" "$color" "$size" "$type"
         done
       done
@@ -985,7 +1021,7 @@ uninstall_theme() {
   for theme in "${THEME_VARIANTS[@]}"; do
     for color in "${COLOR_VARIANTS[@]}"; do
       for size in "${SIZE_VARIANTS[@]}"; do
-        for type in '' '-nord'; do
+        for type in '' '-nord' '-ayu'; do
           uninstall "${dest:-$DEST_DIR}" "${_name:-$THEME_NAME}" "$theme" "$color" "$size" "$type"
         done
       done
