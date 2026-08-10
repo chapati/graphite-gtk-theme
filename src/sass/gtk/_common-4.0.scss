@@ -2469,6 +2469,7 @@ popover.background {
   background-clip: padding-box;
   color: $text-secondary;
   font-weight: 500;
+  border-radius: $corner-radius / 2;
 
   &:hover {
     background-color: $fill;
@@ -2482,7 +2483,7 @@ popover.background {
 
   &:checked, &:selected {
     transition: $transition;
-    background-color: if($variant =='light', rgba($base, 1), rgba(white, 0.15));
+    background-color: if($variant =='light', rgba($base, 1), rgba(white, 0.09));
     color: $text;
     box-shadow: 0 1px 3px rgba(black, 0.06);
 

@@ -1,3 +1,4 @@
+* bring gnome shell variables in line with sass/variables
 * ugly border in search in nautilus, ugly padding on hove
 * change nautilus search bar focused border from 2 to 1px
 * implement non-darker nord version based on obsidian theme
