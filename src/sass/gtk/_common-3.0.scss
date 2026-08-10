@@ -2021,12 +2021,6 @@ scrollbar {
   transition: $transition;
   background-color: $base;
 
-  // scrollbar border
-  &.top { border-bottom: 1px solid $divider; }
-  &.bottom { border-top: 1px solid $divider; }
-  &.left { border-right: 1px solid $divider; }
-  &.right { border-left: 1px solid $divider; }
-
   // slider
   slider {
     transition: background-color $duration $ease-out;
@@ -2035,13 +2029,19 @@ scrollbar {
     border: 4px solid transparent;
     border-radius: $circular-radius;
     background-clip: padding-box;
-    background-color: $text-disabled;
+    background-color: gtkalpha($text-disabled, 0.1);
 
-    &:hover { background-color: $text-secondary; }
+    &:hover {
+      background-color: gtkalpha(currentColor, 0.15);
+    }
 
-    &:active { background-color: $text; }
+    &:active {
+      background-color: gtkalpha(currentColor, 0.3)
+    }
 
-    &:disabled { background-color: $text-secondary-disabled; }
+    &:disabled {
+      background-color: $text-secondary-disabled;
+    }
   }
 
   &.fine-tune {
@@ -2097,8 +2097,10 @@ scrollbar {
       }
     }
 
-    &.dragging,
-    &.hovering { background-color: rgba($surface, 0.9); }
+    &.dragging, &.hovering {
+      background-color: transparent;
+      box-shadow: none;
+    }
   }
 
   &.horizontal slider { min-width: $_slider_min_length; }
