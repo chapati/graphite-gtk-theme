@@ -2299,6 +2299,8 @@ popover.background {
     background-clip: border-box;
     border-radius: if($rimless =='true', $menu-radius, $menu-radius + 2px);
     color: $text;
+    border: 1px solid rgba(white, 0.08);
+
 
     @if $rimless =='true' {
       border: none;
@@ -2327,9 +2329,9 @@ popover.background {
 
   modelbutton {
     transition: background-color $duration $ease-out;
-    min-height: $menuitem-size - $space-size;
+    min-height: $menuitem-size - $space-size * 2;
     min-width: $menuitem-size * 2;
-    padding: $space-size / 2 $space-size * 1.5;
+    padding: $space-size $space-size * 1.5;
     border-radius: $corner-radius;
     color: $text;
     font: initial;
@@ -2381,6 +2383,10 @@ popover.background {
   }
 
   > contents {
+    separator {
+      background-color: rgba(white, 0.06);
+      margin: $space-size / 2 0;
+    }
 
     > list,
     > .view,
@@ -2463,7 +2469,6 @@ popover.background {
   background-clip: padding-box;
   color: $text-secondary;
   font-weight: 500;
-  border-radius: $modal-radius;
 
   &:hover {
     background-color: $fill;
@@ -2702,7 +2707,6 @@ tabbar {
     border: none;
     background-color: $fill;
     padding: 0;
-    border-radius: $modal-radius + $space-size / 2;
     box-shadow: none;
 
     &:backdrop {
@@ -5885,18 +5889,18 @@ toolbarview {
   }
 
   > .top-bar.raised {
-    box-shadow: 0 1px $border;
+    box-shadow: none;
 
     &.border {
-      box-shadow: 0 1px $border;
+      box-shadow: none;
     }
   }
 
   > .bottom-bar.raised {
-    box-shadow: 0 -1px $border;
+    box-shadow: none; // 0 -1px $border;
 
     &.border {
-      box-shadow: 0 -1px $border;
+      box-shadow: none; // 0 -1px $border;
     }
   }
 

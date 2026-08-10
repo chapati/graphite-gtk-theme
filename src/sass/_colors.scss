@@ -90,7 +90,7 @@ $theme_blue_color:    if($variant == 'light', #3684dd, #5294e2);
       @if ($type == 'e') { @return #1c1f26; }
       @if ($type == 'f') { @return #242932; } // Sidebar, original #1e222a
       @if ($type == 'g') { @return #242932; } // Main window background, original #252a33
-      @if ($type == 'h') { @return #333a47; }
+      @if ($type == 'h') { @return #2c323e; } // Popover / menus color
     } @else {
       @if ($type == 'e') { @return #292e38; }
       @if ($type == 'f') { @return #2b303b; }
