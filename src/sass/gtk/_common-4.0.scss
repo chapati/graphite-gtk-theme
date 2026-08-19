@@ -1689,6 +1689,8 @@ headerbar {
   padding: 0;
   margin: 0;
   border: none;
+  background-color: $titlebar;
+  color: $titlebar-text;
   transition: all $duration $ease-out;
 
   @if $rimless =='true' {
@@ -1703,6 +1705,7 @@ headerbar {
   }
 
   &:backdrop {
+    background-color: $titlebar-backdrop;
     color: $titlebar-text-secondary;
 
     &:disabled {
@@ -1717,9 +1720,6 @@ headerbar {
   }
 
   &.flat {
-    background-color: transparent;
-    color: inherit;
-
     @if $variant =='light' and $topbar =='dark' {
       button:not(.suggested-action):not(.destructive-action) {
         @include button(flat-normal);
@@ -1797,7 +1797,6 @@ headerbar {
   }
 
   popover {
-
     // reset
     button:not(.suggested-action):not(.destructive-action):not(.flat) {
       @extend %button-basic;
@@ -1894,9 +1893,7 @@ headerbar {
 
   &.default-decoration {
     min-height: $medium-size;
-    background-color: $titlebar;
     background-image: image($titlebar);
-    color: $titlebar-text;
 
     &:backdrop {
       background-color: $titlebar-backdrop;
